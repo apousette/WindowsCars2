@@ -44,20 +44,23 @@ namespace WindowsCars2
             Cars.Add(new Car() { Id = 801, Make = "Audi", Model = "A7", Color = "White", Km = 492, Price = 187500, Year = 2002 });
             Cars.Add(new Car() { Id = 6031, Make = "Audi", Model = "A6", Color = "Blue", Km = 553, Price = 55400, Year = 2011 });
 
+            //Sorts all available cars and shows them in alphabetical order.
             foreach (Car item in Cars.OrderBy(x => x.Make))
             {
                 allcars.Items.Add(item);
             }           
-
         }
 
+        //When user clicks on a car all attributes are shown in the box to the right of the original list.
         private void allcars_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox ListofCars = sender as ListBox;
             Car SelectedCar = ListofCars.SelectedItem as Car;
 
+            //Clears the ListBox from the previous attributes.
             carattributes.Items.Clear();
 
+            //Puts in all of the attributes of SelectedCar.
             carattributes.Items.Add("####################################");
             carattributes.Items.Add($"Id: {SelectedCar.Id}");
             carattributes.Items.Add($"Manufacturer: {SelectedCar.Make}");
@@ -69,8 +72,11 @@ namespace WindowsCars2
             carattributes.Items.Add("####################################");
         }
     }
+
+    //Public class for all of the cars attributes. Also a string override for ListBox.
     public class Car
     {
+        //Types of attributes of the cars and are sourced from the list in beggining of code.
         public int Id { get; set; }
         public int Km { get; set; }
         public int Price { get; set; }
@@ -78,6 +84,8 @@ namespace WindowsCars2
         public string Make { get; set; }
         public string Model { get; set; }
         public string Color { get; set; }
+
+        //Overrides the ListBox and prints out the attributes of the car.
         public override string ToString()
         {
             return $"{Make} {Model}";
