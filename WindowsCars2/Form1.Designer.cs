@@ -29,13 +29,44 @@ namespace WindowsCars2
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.allcars = new System.Windows.Forms.ListBox();
+            this.carattributes = new System.Windows.Forms.ListBox();
+            this.SuspendLayout();
+            // 
+            // allcars
+            // 
+            this.allcars.FormattingEnabled = true;
+            this.allcars.Location = new System.Drawing.Point(25, 35);
+            this.allcars.Name = "allcars";
+            this.allcars.Size = new System.Drawing.Size(157, 303);
+            this.allcars.TabIndex = 0;
+            this.allcars.SelectedIndexChanged += new System.EventHandler(this.allcars_SelectedIndexChanged);
+            // 
+            // carattributes
+            // 
+            this.carattributes.FormattingEnabled = true;
+            this.carattributes.Location = new System.Drawing.Point(226, 38);
+            this.carattributes.Name = "carattributes";
+            this.carattributes.Size = new System.Drawing.Size(257, 186);
+            this.carattributes.TabIndex = 1;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(900, 571);
+            this.Controls.Add(this.carattributes);
+            this.Controls.Add(this.allcars);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ListBox allcars;
+        private System.Windows.Forms.ListBox carattributes;
     }
 }
 
