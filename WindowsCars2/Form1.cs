@@ -12,11 +12,11 @@ namespace WindowsCars2
 {
     public partial class Form1 : Form
     {
+
+        List<Car> Cars;
         public Form1()
         {
             InitializeComponent();
-
-            List<Car> Cars;
 
             Cars = new List<Car>();
 
@@ -48,11 +48,53 @@ namespace WindowsCars2
             foreach (Car item in Cars.OrderBy(x => x.Make))
             {
                 allcars.Items.Add(item);
-            }           
+            }
+
+            //Goes through all seperate colors that the cars have and puts them in a list in the ComboBox.
+            foreach (var SeperateColor in Cars.Select(x => x.Color).Distinct())
+            {
+                menu.Items.Add(SeperateColor);
+            }
+
         }
 
         //When user clicks on a car all attributes are shown in the box to the right of the original list.
         private void allcars_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox ListofCars = sender as ListBox;
+            Car SelectedCar = ListofCars.SelectedItem as Car;
+
+            //Clears the ListBox from the previous attributes.
+            carattributes.Items.Clear();
+
+            //Puts in all of the attributes of SelectedCar.
+            carattributes.Items.Add("####################################");
+            carattributes.Items.Add($"Id: {SelectedCar.Id}");
+            carattributes.Items.Add($"Manufacturer: {SelectedCar.Make}");
+            carattributes.Items.Add($"Model: {SelectedCar.Model}");
+            carattributes.Items.Add($"Color: {SelectedCar.Color}");
+            carattributes.Items.Add($"Km: {SelectedCar.Km}");
+            carattributes.Items.Add($"Price: {SelectedCar.Price}");
+            carattributes.Items.Add($"Year: {SelectedCar.Year}");
+            carattributes.Items.Add("####################################");
+        }
+
+        
+        private void menu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarsOfColor.Items.Clear();
+
+            var ListOfColors = Cars.FindAll(x => x.Color == (sender as ComboBox).SelectedItem as String);
+
+            foreach (Car item in ListOfColors)
+            {
+                CarsOfColor.Items.Add(item);
+            }
+         
+        }
+
+        //When user clicks on car the attributes come up in the middle box.
+        private void CarsOfColor_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox ListofCars = sender as ListBox;
             Car SelectedCar = ListofCars.SelectedItem as Car;
