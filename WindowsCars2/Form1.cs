@@ -79,13 +79,16 @@ namespace WindowsCars2
             carattributes.Items.Add("####################################");
         }
 
-        
+        //When user clicks on color in ComboBox menu the cars of chosen color pops up in ListBox below.
         private void menu_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Clears the ListBox so it isn't continously stacked with more and more cars of every color.
             CarsOfColor.Items.Clear();
 
+            //Goes through all the Cars and finds all the ones for the chosen color, f.e "Red".
             var ListOfColors = Cars.FindAll(x => x.Color == (sender as ComboBox).SelectedItem as String);
 
+            //Prints out all cars of chosen color in ListBox.
             foreach (Car item in ListOfColors)
             {
                 CarsOfColor.Items.Add(item);
